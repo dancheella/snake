@@ -1,0 +1,38 @@
+canvas {
+  background: #3e933e;
+}
+
+body {
+  background: gray;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.score {
+  margin-left: 20px;
+  font-size: 30px;
+  padding: 20px;
+  background: black;
+  color: brown;
+  border: 0;
+  border-radius: 20px;
+}
+
+.button {
+  font-size: 30px;
+  padding: 20px;
+  background: black;
+  color: cornflowerblue;
+  border: 0;
+  border-radius: 20px;
+}
