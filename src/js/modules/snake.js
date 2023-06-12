@@ -42,19 +42,27 @@ export class Snake {
     const rightButton = document.getElementById('right');
 
     upButton.addEventListener('touchstart', () => {
-      this.currentDirection = 'up';
+      if (this.currentDirection !== 'down') {
+        this.currentDirection = 'up';
+      }
     });
 
     downButton.addEventListener('touchstart', () => {
-      this.currentDirection = 'down';
+      if (this.currentDirection !== 'up') {
+        this.currentDirection = 'down';
+      }
     });
 
     leftButton.addEventListener('touchstart', () => {
-      this.currentDirection = 'left';
+      if (this.currentDirection !== 'right') {
+        this.currentDirection = 'left';
+      }
     });
 
     rightButton.addEventListener('touchstart', () => {
-      this.currentDirection = 'right';
+      if (this.currentDirection !== 'left') {
+        this.currentDirection = 'right';
+      }
     });
   }
 
