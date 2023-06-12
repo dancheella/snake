@@ -75,8 +75,19 @@ export class Snake {
     for (let i = 0; i < this.snake.length; i++) {
       this.context.fillStyle = 'black';
       this.context.beginPath();
-      this.context.fillRect(this.snake[i].x * this.positionsSize - this.positionsSize,
-        this.snake[i].y * this.positionsSize - this.positionsSize, this.positionsSize, this.positionsSize);
+      const x = this.snake[i].x * this.positionsSize - this.positionsSize;
+      const y = this.snake[i].y * this.positionsSize - this.positionsSize;
+      const size = this.positionsSize;
+
+      // основной прямоугольник
+      this.context.fillRect(x, y, size, size);
+
+      // внутренний прямоугольник
+      const blockSize = size / 2;
+      const blockOffsetX = size / 4;
+      const blockOffsetY = size / 4;
+      this.context.fillStyle = 'red';
+      this.context.fillRect(x + blockOffsetX, y + blockOffsetY, blockSize, blockSize);
     }
 
     let newHeadPosition = {
