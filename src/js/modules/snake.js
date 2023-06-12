@@ -43,6 +43,10 @@ export class Snake {
       touchStartY = event.touches[0].clientY;
     });
 
+    document.addEventListener('touchmove', (event) => {
+      event.preventDefault(); // Предотвращаем перемещение страницы
+    });
+
     document.addEventListener('touchend', (event) => {
       const touchEndX = event.changedTouches[0].clientX;
       const touchEndY = event.changedTouches[0].clientY;
@@ -66,7 +70,7 @@ export class Snake {
     });
   }
 
-  showSnake(foodPosition) {
+  showSnake(foodPosition, border) {
     let result = {
       gotFood: false,
       collision: false,
@@ -85,30 +89,47 @@ export class Snake {
     }
 
     if (foodPosition && foodPosition.x === newHeadPosition.x && foodPosition.y === newHeadPosition.y) {
-      result.gotFood = true
+      result.gotFood = true;
     } else {
       this.snake.pop();
     }
 
     if (this.currentDirection === 'left') {
+      if (border && newHeadPosition.x === 1) {
+        newHeadPosition.x = 1;
+        result.collision = true;
+        return result;
+      }
       if (newHeadPosition.x === 1) {
         newHeadPosition.x = this.positionsCount;
       } else {
         newHeadPosition.x -= 1;
       }
     } else if (this.currentDirection === 'right') {
+      if (border && newHeadPosition.x === this.positionsCount) {
+        result.collision = true;
+        return result;
+      }
       if (newHeadPosition.x === this.positionsCount) {
         newHeadPosition.x = 1;
       } else {
         newHeadPosition.x += 1;
       }
     } else if (this.currentDirection === 'up') {
+      if (border && newHeadPosition.y === 1) {
+        result.collision = true;
+        return result;
+      }
       if (newHeadPosition.y === 1) {
         newHeadPosition.y = this.positionsCount;
       } else {
         newHeadPosition.y -= 1;
       }
     } else if (this.currentDirection === 'down') {
+      if (border && newHeadPosition.y === this.positionsCount) {
+        result.collision = true;
+        return result;
+      }
       if (newHeadPosition.y === this.positionsCount) {
         newHeadPosition.y = 1;
       } else {

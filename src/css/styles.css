@@ -2,14 +2,24 @@ canvas {
   background: #3e933e;
 }
 
+.border {
+  border: 20px solid #c09002;
+}
+
 body {
-  background: gray;
+  background: #4f4d4d;
 }
 
 .container {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 20px;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 20px;
 }
 
 .info {
@@ -23,7 +33,7 @@ body {
   font-size: 30px;
   padding: 20px;
   background: black;
-  color: brown;
+  color: #c90808;
   border: 0;
   border-radius: 20px;
 }
@@ -32,7 +42,8 @@ body {
   font-size: 30px;
   padding: 20px;
   background: black;
-  color: cornflowerblue;
+  color: #fffb00;
   border: 0;
   border-radius: 20px;
+  margin-left: 20px;
 }

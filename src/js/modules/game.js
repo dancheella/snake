@@ -10,17 +10,28 @@ export class Game {
   scoreElement = null;
   interval = null;
   score = 0;
+  size = 0;
+  border = false;
 
   constructor(context, settings) {
     this.context = context;
 
     this.positionsCount = settings.positionsCount;
     this.positionsSize = settings.positionsSize;
+    this.size = this.positionsSize * this.positionsCount;
 
     this.scoreElement = document.getElementById('score');
+    this.canvas = document.querySelector('canvas');
+
+    document.getElementById('border').innerText = 'Границы';
 
     document.getElementById('start').onclick = () => {
       this.startGame();
+    }
+
+    document.getElementById('border').onclick = () => {
+      this.border = !this.border;
+      this.showBorder(this.border, this.canvas);
     }
   }
 
@@ -44,7 +55,7 @@ export class Game {
 
     // this.showGrid();
     this.food.showFood();
-    let result = this.snake.showSnake(this.food.foodPosition);
+    let result = this.snake.showSnake(this.food.foodPosition, this.border);
     if (result) {
       if (result.collision) {
         this.endGame();
@@ -80,5 +91,15 @@ export class Game {
     }
     this.context.strokeStyle = "black";
     this.context.stroke();
+  }
+
+  showBorder(border, canvas) {
+    if (border) {
+      canvas.setAttribute('class', 'border');
+      document.getElementById('border').innerText = 'Классический';
+    } else {
+      canvas.classList.remove('border');
+      document.getElementById('border').innerText = 'Границы';
+    }
   }
 }
