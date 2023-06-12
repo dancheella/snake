@@ -41,19 +41,19 @@ export class Snake {
     const leftButton = document.getElementById('left');
     const rightButton = document.getElementById('right');
 
-    upButton.addEventListener('click', () => {
+    upButton.addEventListener('touchstart', () => {
       this.currentDirection = 'up';
     });
 
-    downButton.addEventListener('click', () => {
+    downButton.addEventListener('touchstart', () => {
       this.currentDirection = 'down';
     });
 
-    leftButton.addEventListener('click', () => {
+    leftButton.addEventListener('touchstart', () => {
       this.currentDirection = 'left';
     });
 
-    rightButton.addEventListener('click', () => {
+    rightButton.addEventListener('touchstart', () => {
       this.currentDirection = 'right';
     });
   }

@@ -38,7 +38,7 @@ body {
   border-radius: 20px;
 }
 
-.button {
+.button, .mobile {
   font-size: 30px;
   padding: 20px;
   background: black;
@@ -46,6 +46,10 @@ body {
   border: 0;
   border-radius: 20px;
   margin-left: 20px;
+}
+
+.mobile {
+  margin-bottom: 10px;
 }
 
 path, circle {
