@@ -33,6 +33,8 @@ export class Game {
       this.border = !this.border;
       this.showBorder(this.border, this.canvas);
     }
+
+    this.addControlToggleHandler();
   }
 
   startGame() {
@@ -53,7 +55,7 @@ export class Game {
   gameProcess() {
     this.context.clearRect(0, 0, this.positionsCount * this.positionsSize, this.positionsCount * this.positionsSize);
 
-    // this.showGrid();
+    this.showGrid();
     this.food.showFood();
     let result = this.snake.showSnake(this.food.foodPosition, this.border);
     if (result) {
@@ -91,6 +93,19 @@ export class Game {
     }
     this.context.strokeStyle = "black";
     this.context.stroke();
+  }
+
+  addControlToggleHandler() {
+    const controlButton = document.getElementById('control');
+    const controlBlock = document.querySelector('.control');
+
+    controlButton.addEventListener('click', () => {
+      if (controlBlock.style.display === 'flex') {
+        controlBlock.style.display = 'none';
+      } else {
+        controlBlock.style.display = 'flex';
+      }
+    });
   }
 
   showBorder(border, canvas) {

@@ -13,9 +13,34 @@
   <div class="info">
     <button class="button" id="start">Старт!</button>
     <button class="button" id="border"></button>
+    <button class="button" id="control">Управление</button>
     <div class="score">Очков: <span id="score">0</span></div>
   </div>
 </div>
+
+<div class="control">
+  <div class="top-row">
+    <svg id="up" viewBox="-15 -15 30 30" width="200" height="200">
+      <circle r="15"></circle>
+      <path d="M-6,2 L0,-5 L6,2"></path>
+    </svg>
+  </div>
+  <div class="bottom-row">
+    <svg id="left" viewBox="-15 -15 30 30" width="200" height="200">
+      <circle r="15"></circle>
+      <path d="M2,6 L-5,0 L2,-6"></path>
+    </svg>
+    <svg id="down" viewBox="-15 -15 30 30" width="200" height="200">
+      <circle r="15"></circle>
+      <path d="M-6,-2 L0,5 L6,-2"></path>
+    </svg>
+    <svg id="right" viewBox="-15 -15 30 30" width="200" height="200">
+      <circle r="15"></circle>
+      <path d="M-2,6 L5,0 L-2,-6"></path>
+    </svg>
+  </div>
+</div>
+
 
 <script src="src/js/app.js" type="module"></script>
 

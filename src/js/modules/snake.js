@@ -17,7 +17,6 @@ export class Snake {
     this.positionsSize = positionsSize;
 
     this.addKeyboardHandler();
-    this.addTouchHandler();
   }
 
   addKeyboardHandler() {
@@ -32,41 +31,30 @@ export class Snake {
         this.currentDirection = 'down';
       }
     });
+
+    this.addControlHandlers();
   }
 
-  addTouchHandler() {
-    let touchStartX = 0;
-    let touchStartY = 0;
+  addControlHandlers() {
+    const upButton = document.getElementById('up');
+    const downButton = document.getElementById('down');
+    const leftButton = document.getElementById('left');
+    const rightButton = document.getElementById('right');
 
-    document.addEventListener('touchstart', (event) => {
-      touchStartX = event.touches[0].clientX;
-      touchStartY = event.touches[0].clientY;
+    upButton.addEventListener('click', () => {
+      this.currentDirection = 'up';
     });
 
-    document.addEventListener('touchmove', (event) => {
-      event.preventDefault(); // Предотвращаем перемещение страницы
+    downButton.addEventListener('click', () => {
+      this.currentDirection = 'down';
     });
 
-    document.addEventListener('touchend', (event) => {
-      const touchEndX = event.changedTouches[0].clientX;
-      const touchEndY = event.changedTouches[0].clientY;
+    leftButton.addEventListener('click', () => {
+      this.currentDirection = 'left';
+    });
 
-      const deltaX = touchEndX - touchStartX;
-      const deltaY = touchEndY - touchStartY;
-
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        if (deltaX > 0 && this.currentDirection !== 'left') {
-          this.currentDirection = 'right';
-        } else if (deltaX < 0 && this.currentDirection !== 'right') {
-          this.currentDirection = 'left';
-        }
-      } else {
-        if (deltaY > 0 && this.currentDirection !== 'up') {
-          this.currentDirection = 'down';
-        } else if (deltaY < 0 && this.currentDirection !== 'down') {
-          this.currentDirection = 'up';
-        }
-      }
+    rightButton.addEventListener('click', () => {
+      this.currentDirection = 'right';
     });
   }
 
