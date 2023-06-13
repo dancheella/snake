@@ -49,7 +49,30 @@ export class Game {
 
     this.food.setNewFoodPosition();
 
-    this.interval = setInterval(this.gameProcess.bind(this), 100);
+    // получаем выбранный режим времени
+    const selectedTimeMode = document.getElementById('time-mode').value;
+    let time;
+
+    // установка времени для режимов
+    switch (selectedTimeMode) {
+      case 'mode1':
+        time = 50;
+        break;
+      case 'mode2':
+        time = 100;
+        break;
+      case 'mode3':
+        time = 150;
+        break;
+      case 'mode4':
+        time = 250;
+        break;
+      default:
+        time = 100;
+        break;
+    }
+
+    this.interval = setInterval(this.gameProcess.bind(this), time);
   }
 
   gameProcess() {
