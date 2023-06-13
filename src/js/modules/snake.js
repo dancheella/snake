@@ -1,5 +1,4 @@
 export class Snake {
-
   currentDirection = 'right';
   snake = [
     {
@@ -10,6 +9,7 @@ export class Snake {
   context = null;
   positionsCount = 20;
   positionsSize = 30;
+  actionInProgress = false;
 
   constructor(context, positionsSize, positionsCount) {
     this.context = context;
@@ -21,14 +21,16 @@ export class Snake {
 
   addKeyboardHandler() {
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft' && this.currentDirection !== 'right') {
-        this.currentDirection = 'left';
-      } else if (event.key === 'ArrowRight' && this.currentDirection !== 'left') {
-        this.currentDirection = 'right';
-      } else if (event.key === 'ArrowUp' && this.currentDirection !== 'down') {
-        this.currentDirection = 'up';
-      } else if (event.key === 'ArrowDown' && this.currentDirection !== 'up') {
-        this.currentDirection = 'down';
+      if (!this.actionInProgress) {
+        if (event.key === 'ArrowLeft' && this.currentDirection !== 'right') {
+          this.updateDirection('left');
+        } else if (event.key === 'ArrowRight' && this.currentDirection !== 'left') {
+          this.updateDirection('right');
+        } else if (event.key === 'ArrowUp' && this.currentDirection !== 'down') {
+          this.updateDirection('up');
+        } else if (event.key === 'ArrowDown' && this.currentDirection !== 'up') {
+          this.updateDirection('down');
+        }
       }
     });
 
@@ -42,28 +44,38 @@ export class Snake {
     const rightButton = document.getElementById('right');
 
     upButton.addEventListener('touchstart', () => {
-      if (this.currentDirection !== 'down') {
-        this.currentDirection = 'up';
+      if (!this.actionInProgress && this.currentDirection !== 'down') {
+        this.updateDirection('up');
       }
     });
 
     downButton.addEventListener('touchstart', () => {
-      if (this.currentDirection !== 'up') {
-        this.currentDirection = 'down';
+      if (!this.actionInProgress && this.currentDirection !== 'up') {
+        this.updateDirection('down');
       }
     });
 
     leftButton.addEventListener('touchstart', () => {
-      if (this.currentDirection !== 'right') {
-        this.currentDirection = 'left';
+      if (!this.actionInProgress && this.currentDirection !== 'right') {
+        this.updateDirection('left');
       }
     });
 
     rightButton.addEventListener('touchstart', () => {
-      if (this.currentDirection !== 'left') {
-        this.currentDirection = 'right';
+      if (!this.actionInProgress && this.currentDirection !== 'left') {
+        this.updateDirection('right');
       }
     });
+  }
+
+  updateDirection(direction) {
+    if (!this.actionInProgress) {
+      this.currentDirection = direction;
+      this.actionInProgress = true;
+      setTimeout(() => {
+        this.actionInProgress = false;
+      }, 100);
+    }
   }
 
   showSnake(foodPosition, border) {
